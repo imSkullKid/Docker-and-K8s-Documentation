@@ -181,7 +181,7 @@ command (shown with its output):
 [source,text]
 ----
 $ curl localhost:8080
-Greetings from Spring Boot!
+Greetings from Spring Boot! This application has now been dockerized Test
 ----
 ====
 
