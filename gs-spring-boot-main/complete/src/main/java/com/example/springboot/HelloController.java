@@ -8,7 +8,7 @@ public class HelloController {
 
 	@GetMapping("/")
 	public String index() {
-		return "Greetings from Spring Boot! This application has now been dockerized This application has now been dockerized";
+		return "Greetings from Spring Boot! This application has now been dockerized.";
 	}
 
 }

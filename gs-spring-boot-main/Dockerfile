@@ -1,19 +1,23 @@
 # Start your image with a java base image
-FROM openjdk:17
+FROM eclipse-temurin:17-jdk-alpine
 
 # The /app directory should act as the main application directory
 WORKDIR /app
 
-# Copy the app package and package-lock.json file
+# Copy the pom and place it in the base directory of the image
 COPY pom.xml ./
 
-# Copy local directories to the current local directory of our docker image (/app)
-COPY ./src ./src
+# Create an ARG called JAR_FILE, which we can call on during the new image creation
+ARG JAR_FILE
 
-# Install node packages, install serve, build the app, and remove dependencies at the end
+# Copies the parameter provided during image creation and copies it titled app.jar
+COPY ${JAR_FILE} app.jar
+
+# Install dependencies with maven
 RUN mvn clean install
 
+#Expose the port
 EXPOSE 8080
 
-# Start the app using serve command
-CMD [ "serve", "-s", "build" ]
+# Start the app using the java -jar command
+ENTRYPOINT ["java","-jar","/app.jar"]
