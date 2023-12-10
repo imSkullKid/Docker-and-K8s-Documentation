@@ -1,7 +1,7 @@
 # Start your image with a java base image
 FROM eclipse-temurin:17-jdk-alpine
 
-# The /app directory should act as the main application directory
+# Creates the /app directory should act as the main application directory
 WORKDIR /app
 
 # Copy the pom and place it in the base directory of the image
@@ -13,11 +13,8 @@ ARG JAR_FILE
 # Copies the parameter provided during image creation and copies it titled app.jar
 COPY ${JAR_FILE} app.jar
 
-# Install dependencies with maven
-RUN mvn clean install
-
 #Expose the port
 EXPOSE 8080
 
 # Start the app using the java -jar command
-ENTRYPOINT ["java","-jar","/app.jar"]
+ENTRYPOINT ["java","-jar","app.jar"]
