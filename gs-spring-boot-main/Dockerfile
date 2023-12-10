@@ -18,3 +18,5 @@ EXPOSE 8080
 
 # Start the app using the java -jar command
 ENTRYPOINT ["java","-jar","app.jar"]
+# The command to create the image is `docker build --build-arg JAR_FILE=target/*.jar -t myimage .`
+# To run the image as a container it is `docker run -p 8080:8080 myimage`
